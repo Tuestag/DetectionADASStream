@@ -79,6 +79,7 @@ def initialization():
     #cfg.MODEL.WEIGHTS = os.path.join("https://api.github.com/repos/Tuestag/DetectionCoffeeStream/releases/assets/49141342")
     ############EDITAR:#################################################
     cfg.MODEL.WEIGHTS = os.path.join("https://github.com/Tuestag/DetectionCoffeeStream/releases/download/Modelo19CoffeeDetection/modelo19.pth")
+    cfg.MODEL.WEIGHTS = os.path.join("https://github.com/Tuestag/DetectionADASStream/releases/download/adasdetectronCO/Detectron2.pth")
     
     from detectron2.data.datasets import register_coco_instances
     register_coco_instances("my_dataset_test", {}, "/test/_annotations.coco.json", "test")
