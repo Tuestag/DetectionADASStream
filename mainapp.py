@@ -104,6 +104,54 @@ def output_image(cfg, img, outputs):
 
     return processed_img
 
+@st.cache
+ef onVideo(self,videoPath):
+        video = cv2.VideoCapture(videoPath)
+        width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
+        height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        frames_per_second = video.get(cv2.CAP_PROP_FPS)
+        num_frames = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
+
+        #fourcc = cv2.VideoWriter_fourcc(*'mpv4')
+        #out = cv2.VideoWriter("detected_video.mp4", fourcc, 20.0, (w, h))
+
+        #initializing videoWriter
+        fourcc = cv2.VideoWriter_fourcc(*'mpv4')
+        video_writer = cv2.VideoWriter("output.mp4", fourcc , fps=float(frames_per_second), frameSize=(width, height), isColor=True)
+
+       
+        v = VideoVisualizer(MetadataCatalog.get(self.cfg.DATASETS.TRAIN[0]), ColorMode.IMAGE)
+
+        def runOnVideo(video,maxFrames):# this is for debugging
+
+            readFrames = 0
+            while True:
+                hasFrame , frame = video.read()
+                if not hasFrame:
+                    break
+                outputs = self.predictor(frame)
+                
+
+                frame  = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+
+                visualization = v.draw_instance_predictions(frame, outputs['instances'].to('cpu'))
+                visualization = cv2.cvtColor(visualization.get_image(),cv2.COLOR_RGB2BGR)
+                yield visualization
+                
+                readFrames += 1
+                if readFrames > maxFrames:
+                    break
+        num_frames = 200 # here  we reinitialize the number of frames because  of it'll take hours to write the detectedVideos to our video_file and since we don't have a gpu
+        # if num_frames is not re-inititialized. the entire frames of the video will be taken into account.. usually taking hours to detect since a 'cpu' and not'gpu' is used
+        for visualization in tqdm.tqdm(runOnVideo(video, num_frames), total = num_frames):
+            #cv2.imwrite("detected_image.png", visualization)
+
+            video_writer.write(visualization)
+        video.release()
+        video_writer.release()
+        cv2.destroyAllWindows()
+
+
 
 @st.cache
 def discriminate(outputs, classes_to_detect):
