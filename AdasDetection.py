@@ -18,8 +18,7 @@ class Detector:
 
     def __init__(self, model_type = "objectDetection"):
         self.cfg = get_cfg()
-        self.cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
-       # self.cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
+        self.cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml"))
         self.cfg.MODEL.WEIGHTS = os.path.join("https://github.com/Tuestag/DetectionADASStream/releases/download/adasdetectronCO/Detectron2.pth")
         self.cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7
         self.cfg.MODEL.DEVICE = "cpu" # cpu or cuda
