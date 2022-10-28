@@ -105,7 +105,7 @@ def output_image(cfg, img, outputs):
     return processed_img
 
 @st.cache
-ef onVideo(self,videoPath):
+def onVideo(self,videoPath):
         video = cv2.VideoCapture(videoPath)
         width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
