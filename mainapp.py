@@ -83,8 +83,8 @@ def initialization():
     
     from detectron2.data.datasets import register_coco_instances
     register_coco_instances("my_dataset_test", {}, "/test/_annotations.coco.json", "test")
-    MetadataCatalog.get("my_dataset_test").thing_classes = ['Adas', 'Moto', 'Obstaculo', 'Peaton', 'Pista']#, 'Vehiculo']
-    MetadataCatalog.get("my_dataset_test").thing_dataset_id_to_contiguous_id = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4}#, 5:5}
+    MetadataCatalog.get("my_dataset_test").thing_classes = ['Adas', 'Moto', 'Obstaculo', 'Peaton', 'Pista', 'Vehiculo']
+    MetadataCatalog.get("my_dataset_test").thing_dataset_id_to_contiguous_id = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5:5}
     # Initialize prediction model
     predictor = DefaultPredictor(cfg)
 
