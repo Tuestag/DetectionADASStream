@@ -70,7 +70,7 @@ def initialization():
     cfg.MODEL.DEVICE = 'cpu'
     # Add project-specific config (e.g., TensorMask) here if you're not running a model in detectron2's core library
   #  cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
-    cfg.MODEL.ROI_HEADS.NUM_CLASSES = 6
+    cfg.MODEL.ROI_HEADS.NUM_CLASSES = 5
     cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml"))
     # Set threshold for this model
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  
@@ -83,8 +83,8 @@ def initialization():
     
     from detectron2.data.datasets import register_coco_instances
     register_coco_instances("my_dataset_test", {}, "/test/_annotations.coco.json", "test")
-    MetadataCatalog.get("my_dataset_test").thing_classes = ['Adas', 'Moto', 'Obstaculo', 'Peaton', 'Pista', 'Vehiculo']
-    MetadataCatalog.get("my_dataset_test").thing_dataset_id_to_contiguous_id = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5:5}
+    MetadataCatalog.get("my_dataset_test").thing_classes = ['Adas', 'Moto', 'Obstaculo', 'Peaton', 'Pista']#, 'Vehiculo']
+    MetadataCatalog.get("my_dataset_test").thing_dataset_id_to_contiguous_id = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4}#, 5:5}
     # Initialize prediction model
     predictor = DefaultPredictor(cfg)
 
