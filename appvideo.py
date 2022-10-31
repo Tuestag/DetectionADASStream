@@ -5,7 +5,7 @@ from objectDetection import *
 #detector.onVideo("pexels-tima-miroshnichenko-6388396.mp4")
 #@st.cache
 def func_2(x):
-    detector = Detector(model_type=x)
+    detector = Detector.inicializacion()
     uploaded_video = st.file_uploader("Upload Video", type = ['mp4','mpeg','mov'])
     if uploaded_video != None:
         
