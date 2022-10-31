@@ -28,7 +28,7 @@ class Detector:
         return cfg, predictor
     
     
-    def __init__(self, model_type = "objectDetection"):
+    #def __init__(self, model_type = "objectDetection"):
         #cfg = get_cfg()
         #cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml"))
         #cfg.MODEL.WEIGHTS = os.path.join("https://github.com/Tuestag/DetectionADASStream/releases/download/adasdetectronCO/Detectron2.pth")
