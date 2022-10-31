@@ -59,11 +59,11 @@ class Detector:
         frames_per_second = video.get(cv2.CAP_PROP_FPS)
         num_frames = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
 
-        #fourcc = cv2.VideoWriter_fourcc(*'mpv4')
+        #fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         #out = cv2.VideoWriter("detected_video.mp4", fourcc, 20.0, (w, h))
 
         #initializing videoWriter
-        fourcc = cv2.VideoWriter_fourcc(*'mpv4')
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         video_writer = cv2.VideoWriter("output.mp4", fourcc , fps=float(frames_per_second), frameSize=(width, height), isColor=True)
 
        
