@@ -34,7 +34,7 @@ def main():
 
     option = st.selectbox(
      'What Type of File do you want to work with?',
-     ('a',Videos'))
+     ('Images', 'Videos'))
 
     #st.write('You selected:', option)
     if option == "Videos":
