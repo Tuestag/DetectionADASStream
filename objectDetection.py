@@ -18,13 +18,13 @@ import tqdm
 class Detector:
 
     def __init__(self, model_type = "objectDetection"):
-        self.cfg = get_cfg()
-        self.cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml"))
-        self.cfg.MODEL.WEIGHTS = os.path.join("https://github.com/Tuestag/DetectionADASStream/releases/download/adasdetectronCO/Detectron2.pth")
-        self.cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7
-        self.cfg.MODEL.DEVICE = "cpu" # cpu or cuda
+        cfg = get_cfg()
+        cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml"))
+        cfg.MODEL.WEIGHTS = os.path.join("https://github.com/Tuestag/DetectionADASStream/releases/download/adasdetectronCO/Detectron2.pth")
+        cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7
+        cfg.MODEL.DEVICE = "cpu" # cpu or cuda
 
-        self.predictor = DefaultPredictor(self.cfg)
+        predictor = DefaultPredictor(cfg)
 
     def onImage(self, imagePath):
         image = cv2.imread(imagePath)
