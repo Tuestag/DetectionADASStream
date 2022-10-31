@@ -17,26 +17,26 @@ import tqdm
 
 class Detector:
     
-    def inicializacion():
-        cfg = get_cfg()
-        cfg.MODEL.DEVICE = 'cpu'
-        cfg.MODEL.ROI_HEADS.NUM_CLASSES = 5
-        cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml"))
-        cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  
-        cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml")
-        #cfg.MODEL.WEIGHTS = os.path.join("https://github.com/Tuestag/DetectionADASStream/releases/download/adasdetectronCO/Detectron2.pth")
-        predictor = DefaultPredictor(cfg)
-        return cfg, predictor
+   # def inicializacion():
+   #     cfg = get_cfg()
+   #     cfg.MODEL.DEVICE = 'cpu'
+   #     cfg.MODEL.ROI_HEADS.NUM_CLASSES = 5
+   #     cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml"))
+   #     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  
+   #     cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml")
+   #     #cfg.MODEL.WEIGHTS = os.path.join("https://github.com/Tuestag/DetectionADASStream/releases/download/adasdetectronCO/Detectron2.pth")
+   #     predictor = DefaultPredictor(cfg)
+   #     return cfg, predictor
     
     
-    #def __init__(self, model_type = "objectDetection"):
-        #cfg = get_cfg()
-        #cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml"))
-        #cfg.MODEL.WEIGHTS = os.path.join("https://github.com/Tuestag/DetectionADASStream/releases/download/adasdetectronCO/Detectron2.pth")
-        #cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7
-        #cfg.MODEL.DEVICE = "cpu" # cpu or cuda
+    def __init__(self, model_type = "objectDetection"):
+        self.cfg = get_cfg()
+        self.cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml"))
+        self.cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
+        self.cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7
+        self.cfg.MODEL.DEVICE = "cpu" # cpu or cuda
 
-        #predictor = DefaultPredictor(cfg)
+        self.predictor = DefaultPredictor(self.cfg)
 
     def onImage(self, imagePath):
         image = cv2.imread(imagePath)
